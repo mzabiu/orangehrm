@@ -9,19 +9,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-	EventFiringWebDriver driver;
-	String windowTitle = "";
+	protected WebDriverWait wait;
+
+	protected EventFiringWebDriver driver;
+	protected String windowTitle = "";
 
 	@FindBy(id = "menu_dashboard_index")
-	private WebElement linkDashboard;
-	
+	protected WebElement linkDashboard;
+
 	@FindBy(xpath = "//div[@class='head']/*[text()='Dashboard']")
-	private WebElement lblDashboard;
-	
+	protected WebElement lblDashboard;
+
+	@FindBy(id = "welcome")
+	protected WebElement linkWelcome;
+
+	@FindBy(xpath = "//div[@id='welcome-menu']//a[text()='Logout']")
+	protected WebElement linkLogout;
 
 	public BasePage(EventFiringWebDriver driver) {
 
 		this.driver = driver;
+		wait = new WebDriverWait(driver, 15);
 		initPage();
 	}
 
@@ -29,11 +37,6 @@ public class BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void returnToMainPage() {
-		driver.switchTo().defaultContent();
-		linkDashboard.click();
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		wait.until(ExpectedConditions.visibilityOf(lblDashboard));
-	}
+
 
 }

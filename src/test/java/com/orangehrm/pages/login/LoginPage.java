@@ -3,6 +3,7 @@ package com.orangehrm.pages.login;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.orangehrm.pages.BasePage;
 
@@ -23,8 +24,21 @@ public class LoginPage extends BasePage {
 
 	public void loginToHrm() {
 		txtUserName.sendKeys("Admin");
-		txtPassword.sendKeys("admmin123");
+		txtPassword.sendKeys("admin123");
 		btnLogin.click();
+	}
+
+	public void returnToMainPage() {
+		driver.switchTo().defaultContent();
+		linkDashboard.click();
+
+		wait.until(ExpectedConditions.visibilityOf(lblDashboard));
+	}
+
+	public void logout() {
+		linkWelcome.click();
+		wait.until(ExpectedConditions.visibilityOf(linkLogout));
+		linkLogout.click();
 	}
 
 }
