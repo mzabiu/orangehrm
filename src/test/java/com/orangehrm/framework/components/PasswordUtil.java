@@ -1,4 +1,4 @@
-package com.orangehrm.framework.password;
+package com.orangehrm.framework.components;
 
 import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
