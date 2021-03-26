@@ -30,14 +30,18 @@ public class LoginPage extends BasePage {
 
 	public void returnToMainPage() {
 		driver.switchTo().defaultContent();
+		
 		linkDashboard.click();
 
 		wait.until(ExpectedConditions.visibilityOf(lblDashboard));
 	}
 
 	public void logout() {
+		wait.until(ExpectedConditions.visibilityOf(linkWelcome));
+		validator.assertEquals(linkWelcome.isDisplayed(), true);
 		linkWelcome.click();
 		wait.until(ExpectedConditions.visibilityOf(linkLogout));
+		validator.assertEquals(linkLogout.isDisplayed(), true);
 		linkLogout.click();
 	}
 
